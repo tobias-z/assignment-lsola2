@@ -57,6 +57,8 @@
    The interface must not expose specific knowledge about underlieing objects of the layer in question, so that the calling layer doesn't need to depend on them.
    All in all this makes sure that the calling layer doesn't depend on concretes, which makes for loose coupling between layers
 
+   Although this is definitely a thing in a layered architecture, these problems also arise when using other architectures such as hexagonal architecture or domain driven design.
+
 4. Layers are Logical and Tiers are physical –. A widely used version of N-tier involves
    three tiers – what are they and what is the role of each of them? This could be
    illustrated with an example application and diagrams.
@@ -86,6 +88,7 @@
    software architecture pattern that integrates applications and components through
    the production and handling of events”. How would you explain this description to a
    business user? You might find it helpful to illustrate the answer with diagrams.
+
 6. What is the difference between a message queue (point to point pattern) and
    message topics (publish-subscribe pattern)? Provide diagrams to illustrate your
    explanation.
@@ -114,7 +117,7 @@
 
 ```bash
 find .git/objects
-git cat-file -p 3d8071 (where 3d8071 is a partial SHA1 hash)
+git cat-file -p 3d8071 # (where 3d8071 is a partial SHA1 hash)
 ```
 
 12. What does the git cherry-pick command do? Provide an example of using it
