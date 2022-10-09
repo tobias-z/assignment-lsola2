@@ -89,7 +89,7 @@
    the production and handling of events”. How would you explain this description to a
    business user? You might find it helpful to illustrate the answer with diagrams.
 
-   The typical way an application would comunicate complete some sort of task, would be through calling a bunch of predefined logic, wether this is inside a single huge application, or in multiple applications working together, the overall idea would'nt change.
+   The typical way an application would complete some sort of task, would be through calling a bunch of predefined logic, wether this is inside a single huge application, or in multiple applications working together, the overall idea would'nt change.
    So you end up with a bunch of logic that is completely coupled together with specific applications / functionality inside the same application.
 
    What event driven architecture tries to do, is solve the tight coupling between these applications.
@@ -120,10 +120,22 @@
 6. What is the difference between a message queue (point to point pattern) and
    message topics (publish-subscribe pattern)? Provide diagrams to illustrate your
    explanation.
+
+   Simply put a message queue means that ones a message is dequeue'ed (or read) by a service listening to a queue, it is gone. No other service listening to that same queue will be able to consume it.
+
+   ![Message queue](./images/message-queue.png)
+
+   This is useful for situations where you want to make sure that a message is only read ones.
+   Maybe in the situation of the previous example the two subscribers are the same applications one of which is a replica of the other, so you wouldnt want the same operation to be done on both of them.
+
+   A message topic does this differently by providing the message emitted to the topic, to all services listening to that topic.
+   The messages are then stored in that topic for X amount of time, and each service has their own 'log' which knows if a service has already recieved a specific message.
+   This means that we are able to add a new subscriber, and it would still be able to read all previous messages from that topic. This is also known as event sourcing.
+
+   ![Message topic](./images/message-topic.png)
+
 7. Follow the kafka introduction https://kafka.apache.org/intro and provide an
-   example of how kafka can be used to support an event stream. (the quick start
-   SOFT PBA DLS
-   tutorial will help https://kafka.apache.org/quickstart )
+   example of how kafka can be used to support an event stream. (the quick start tutorial will help https://kafka.apache.org/quickstart )
 8. A mediator topology and a broker topology can both be used to manage event
    streams. Briefly describe what broker and mediator topologies are and the use cases
    they are best suited to. Use diagrams to illustrate your answer, which could relate to
