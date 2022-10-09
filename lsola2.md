@@ -89,6 +89,34 @@
    the production and handling of events”. How would you explain this description to a
    business user? You might find it helpful to illustrate the answer with diagrams.
 
+   The typical way an application would comunicate complete some sort of task, would be through calling a bunch of predefined logic, wether this is inside a single huge application, or in multiple applications working together, the overall idea would'nt change.
+   So you end up with a bunch of logic that is completely coupled together with specific applications / functionality inside the same application.
+
+   What event driven architecture tries to do, is solve the tight coupling between these applications.
+   It does this by changing the way applications comunicate together - now instead of an application having to know exactly what to do after a specific thing has happened in the system, it tells the whole world that that this has happened, and then other applications are able to act on these specific things.
+
+   Let's look at an example flow using first the old way of comunication and then how event driven architecture changes how this comunication happens.
+
+   **The flow:**
+
+   1. A person wants to setup insurrance for their newly bought car.
+   2. A request is made to our insurrance application, about setting this up. This contacts SKAT and it does some internal things which in the end accepts the request.
+   3. Ones the car is correctly insurred, the insurrance application contacts our, internal applications which need to know about the car registration.
+      There may be many reasons for the applications to know about this, such as being able to cache this for later requests, saving it to a database or even using it for analytics.
+   4. Ones all applications have been notified it, we simple tell the person that their insurrance registration was successfull.
+
+   Using a traditional approach:
+
+   ![traditional application](./images/traditional-app.png)
+
+   Using an event driven approach:
+
+   ![Event driven application](./images/event-driven-app.png)
+
+   So now instead of having the insurrance application know about every single application that needs to know about that specific thing that happened, it just needs to tell the event handler that it happened and then the event handler will send it to all applications which care about it.
+
+   This also enables us to easily add new applications which care about that event, as shown in the event driven approach. As you can see there has beed added a third system which also listens for the same event - and no logic had to be changed.
+
 6. What is the difference between a message queue (point to point pattern) and
    message topics (publish-subscribe pattern)? Provide diagrams to illustrate your
    explanation.
