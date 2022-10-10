@@ -136,6 +136,20 @@
 
 7. Follow the kafka introduction https://kafka.apache.org/intro and provide an
    example of how kafka can be used to support an event stream. (the quick start tutorial will help https://kafka.apache.org/quickstart )
+
+   Kafka is built to support the before mentioned event driven design.
+   Is is built to support event steaming, which means that it can perform actions such as publishing and subscribing to specific topics in real time.
+   It also enables storing of these events for as long as you prefer, using event sourcing.
+
+   Let's take a quick example:
+
+   Let's say you create a topic called `orderDelivered`, and create a service which publish these events whenever an order is delivered.
+   You can then create an analytics service which listens to this specific topic. Whenever the `orderDelivered` event us published, this new service will be able to get those events in real time.
+   Imagine that this works great for half a year or so, and then a business manager arrives and says they also want an email to be sent to the customer asking whether they enjoyed buying our products.
+   This is now easy and we don't need to reconfigure the old code, since we can just create a new customer service which also listens to this event.
+   Now because we are using event sourcing, whenever we spin up this service, it will be given the whole log of previous `orderDelivered` events.
+   This is a huge business value since we will now be emailing all our previous customers and that may remind them about our services.
+
 8. A mediator topology and a broker topology can both be used to manage event
    streams. Briefly describe what broker and mediator topologies are and the use cases
    they are best suited to. Use diagrams to illustrate your answer, which could relate to
