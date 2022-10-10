@@ -199,6 +199,8 @@
    different strategies.
    you may want to watch the LinkedIn Learning course Git Workflows.
 
+   add some text
+
 10. Explain what git blobs, trees, commits and tags are as git object types. Provide a
     brief explanation of their role in the git system. This answer should include screen
     shots of a git repository file system being explored showing the different object
