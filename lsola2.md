@@ -168,7 +168,7 @@
 
    Examples of mediator topologies could be Apache Camel or Camunda (BPM)
 
-   A broker topology is different from a mediator in that it does'nt have a central mediator controlling the flow of the entire process.
+   A broker topology is different from a mediator in that it doesn't have a central mediator controlling the flow of the entire process.
 
    It is a flow of events where subscribers listen to specific events, perform operations and then optionally publish the operation has been completed, so that other subscribers can perform operations based on that.
 
@@ -199,7 +199,27 @@
    different strategies.
    you may want to watch the LinkedIn Learning course Git Workflows.
 
-   add some text
+   When working with git you have a few options as to which strategy you are going to be using. Two of these strategies are called Git Flow and Trunk based development.
+
+   Git Flow:
+
+   - main/master branch where you keep all code which is production ready.
+   - develop branch which the branch all feature branches are eventually merged into, before merging develop into main when it has been thoroughly tested.
+   - feature branches are created either directly from the develop branch or from other feature branches.
+   - hotfix branches are branched directly out from the main branch. It should be used to quickly patch small bugs.
+   - release branches are branched from develop whenever a new release should be done. This is done so that the development team can still work on new features, that can be merged into develop while the release is going on.
+   - All code is merged using pull requests that are reviewed by one or more people depending on the team size.
+
+   The Git Flow strategy provides a bunch of benefits, such as being sure that code in production has been reviewed.
+   This is benefitual in all cases, but mostly when a team consists of a lot of juniors or new seniors who may not have a lot of experiance with the project or even with the underlieing business case.
+
+   Trunk based development:
+
+   - main branch which keeps all code that is production ready. It is frequently either pushed or merged to directly.
+   - feature branches can be created from the main branch, they should not be active for too long, because you don't want to deal with a lot of unmanageable merge conflicts.
+
+   Trunk based development provides a lot of speed to your development cycle. In it's base model it allows the developer to just push code. This places a lot of trust in the developers hands.
+   It can be very benefitual when working in new projects that just needs stuff done, or when working with a team of mostly senior developers.
 
 10. Explain what git blobs, trees, commits and tags are as git object types. Provide a
     brief explanation of their role in the git system. This answer should include screen
