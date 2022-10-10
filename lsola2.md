@@ -155,7 +155,43 @@
    they are best suited to. Use diagrams to illustrate your answer, which could relate to
    the same application but different services (ones better suited to a mediator
    topology and one to a broker technology)
-   Version Control
+
+   A mediator topology is the idea of reacting to a specific event, and performing tasks that may or may not happen at the same time because of it.
+
+   A mediator consists of:
+
+   1. The initial event which starts a specific process.
+   2. An event queue keeping track of ongoing events.
+   3. An event mediator, which orchastrates which channels should be invoked.
+   4. Event channels, which executes all processes that are attached to that channel.
+   5. Event processers, which are listening to event channels, and when called executes specific business logic.
+
+   Examples of mediator topologies could be Apache Camel or Camunda (BPM)
+
+   A broker topology is different from a mediator in that it does'nt have a central mediator controlling the flow of the entire process.
+
+   It is a flow of events where subscribers listen to specific events, perform operations and then optionally publish the operation has been completed, so that other subscribers can perform operations based on that.
+
+   Examples of broker topologies could be RabbitMQ and Apache Kafka.
+
+   Let's look at a simplified version of a New Order event, and how this could be implemented using a mediator topology and and a broker topology
+
+   Mediator:
+
+   ![Mediator bpmn](./images/mediator-bpm.png)
+
+   Broker:
+
+   ![Broker example](./images/broker-example.png)
+
+   As the diagrams suggest, the difference is that instead of the mediator taking care of the steps (Mediator diagram) the subscribers listen to specific events such as `Order Created` and act on that instead.
+
+   In this situation i would argue that a mediator topology would be most benefitual to our business, because it usually provides a greater overview of huge tasks.
+   In the case of the previous example you may not actually create a diagram or physical representation of each step in you workflow with a broker topology, but with a mediator it is a requirement for setting it up.
+   Whether it is a diagram or code such as using camel routes, that depends on your choice of technology.
+
+   In general mediators should probably be used when dealing with complicated business logic where it has to be very clear when specific processes are happening, and brokers should be used when having to react to specific events such as when a thing gets inserted into the database (if you are using an Event-carried state transfer pattern)
+
 9. Set up a git repository according to the rules of the Github Flow and Trunk based
    development strategies and explain the arguments for and against using them. As
    part of your answer explain why the Git Flow strategy is now considered out of date.
